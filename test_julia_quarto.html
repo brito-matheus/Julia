@@ -97,6 +97,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="test_julia_quarto_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="test_julia_quarto_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="test_julia_quarto_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -141,14 +144,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="learning-julia" class="level3">
 <h3 class="anchored" data-anchor-id="learning-julia">Learning Julia</h3>
 <div class="cell" data-execution_count="1">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Gadfly </span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">TableView</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CSV</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">XLSX</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="2">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start Importing Fundos data set </span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>fundos <span class="op">=</span> XLSX.<span class="fu">readxlsx</span>(<span class="st">"C:/Users/mathe/OneDrive/Documentos/Finanças/fundos.xlsx"</span>)</span>
@@ -162,18 +170,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    column_names[i] <span class="op">=</span> <span class="fu">replace</span>(column_names[i], <span class="st">"</span><span class="sc">\n</span><span class="st">"</span> <span class="op">=&gt;</span> <span class="st">" "</span>)</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    column_names[i] <span class="op">=</span> <span class="fu">replace</span>(column_names[i], <span class="st">" "</span> <span class="op">=&gt;</span> <span class="st">"_"</span>)</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<div class="cell" data-tbl-caption="Tabela teste" data-tbl-width="12">
+<div class="cell" data-tbl-caption="Tabela teste" data-tbl-width="12" data-execution_count="3">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the data frame </span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rename!</span>(dt, column_names, makeunique<span class="op">=</span><span class="cn">true</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(dt[<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">show</span>(dt[<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>10×10 DataFrame
+ Row │ Nome                       Classe   Pais_Sede  Tipo_de_Ativo  Ativo_/_C ⋯
+     │ Any                        Any      Any        Any            Any       ⋯
+─────┼──────────────────────────────────────────────────────────────────────────
+   1 │ Nome                       Classe   Pais Sede  Tipo de Ativo  Ativo /\n ⋯
+   2 │ 051 Acoes FIA              missing  BR         Fundo          ativo
+   3 │ 333 FIA Ie                 missing  BR         Fundo          ativo
+   4 │ 3g Radar FIC FIA 1080      missing  BR         Fundo          ativo
+   5 │ 3g Radar FIC FIA 60 II     missing  BR         Fundo          ativo     ⋯
+   6 │ 3g Radar II FIC FIA 1080   missing  BR         Fundo          ativo
+   7 │ 3g Radar Master FIA        missing  BR         Fundo          ativo
+   8 │ 4um Marlin Dividendos FIA  missing  BR         Fundo          ativo
+   9 │ 4um Small Caps FIA         missing  BR         Fundo          ativo     ⋯
+  10 │ A3 FI Cotas FIA            missing  BR         Fundo          ativo
+                                                               6 columns omitted</code></pre>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecionando as colunas </span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dt[<span class="op">:</span>, [<span class="op">:</span>Nome, <span class="op">:</span>Classe, <span class="op">:</span>Classificação_Anbima]]</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dropmissing</span>(dt[!, [<span class="op">:</span>Nome, <span class="op">:</span>Classe, <span class="op">:</span>Classificação_Anbima, <span class="op">:</span>Gestora_]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="4">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecionando as colunas </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dt[<span class="op">:</span>, [<span class="op">:</span>Nome, <span class="op">:</span>Classe, <span class="op">:</span>Classificação_Anbima]]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dropmissing</span>(dt[!, [<span class="op">:</span>Nome, <span class="op">:</span>Classe, <span class="op">:</span>Classificação_Anbima, <span class="op">:</span>Gestora_]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+
+<div class="data-frame"><p>1 rows × 4 columns</p><table class="data-frame table table-sm table-striped"><thead><tr><th></th><th>Nome</th><th>Classe</th><th>Classificação_Anbima</th><th>Gestora_</th></tr><tr><th></th><th title="Any">Any</th><th title="Any">Any</th><th title="Any">Any</th><th title="Any">Any</th></tr></thead><tbody><tr><th>1</th><td>Nome</td><td>Classe</td><td>Classificação\nAnbima</td><td>Gestora\n</td></tr></tbody></table></div>
+</div>
+</div>
+<div class="cell" data-execution_count="8">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">show</span>(column_names)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(dt[<span class="op">:</span>, [<span class="ch">'Taxa_de_Administração_Máxima_em_%_a.a.'</span>,<span class="ch">'Patrimônio___em_milhares'</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>["Nome", "Classe", "Pais_Sede", "Tipo_de_Ativo", "Ativo_/_Cancelado", "CNPJ", "Código_Anbima", "Classificação_Anbima", "Gestora_", "Administradora", "Link_para_o_regulamento", "Tipo_de_investidor", "Taxa_de_Administração_Máxima_em_%_a.a.", "Investimento_no_Exterior", "Benchmark", "Data_do_Início_da_Série", "Data_da_Últ_Cotação", "Patrimônio___em_milhares", "Patrimônio_Médio_12_meses_em_milhares", "Patrimônio_vs_Média_de_12_meses_em_%", "Cota___em_reais", "Cota_Máxima_em_12_meses_em_reais", "Data_da_Cota_Máxima_12_meses", "Cota_Atual_vs_Máx_12_meses_em_%", "Média_de_Cotistas_1_mês_em_unidades", "Captação_Líquida_no_Mês_em_milhares", "Captação_Líquida_no_Ano_em_milhares", "Captação_Líquida_em_12_meses_em_milhares", "Retorno_1_mês__em_%", "Prêmio_vs_IBOV_1_mês_em_dif._de_p.p.", "Retorno_3_meses__em_%", "Prêmio_vs_IBOV_3_meses_em_dif._de_p.p.", "Retorno_6_meses__em_%", "Prêmio_vs_IBOV_6_meses_em_dif._de_p.p.", "Retorno_12_meses__em_%", "Prêmio_vs_IBOV_12_meses_em_dif._de_p.p.", "Retorno_24_meses__em_%", "Prêmio_vs_IBOV_24_meses_em_dif._de_p.p.", "Retorno_36_meses__em_%", "Prêmio_vs_IBOV_36_meses_em_dif._de_p.p.", "Retorno_no_mês__em_%", "Prêmio_vs_IBOV_no_mês_em_dif._de_p.p.", "Retorno_no_ano__em_%", "Prêmio_vs_IBOV_no_ano_em_dif._de_p.p.", "Retorno_desde_o_Início_em_%", "Prêmio_Médio_Anual_vs_IBOV_do_Início_em_dif._de_p.p.", "Data_do_Início_da_Série", "Volatilidade_12_meses__em_%", "Sharpe_12_meses__em_unidades", "VAR_95%_p/_1_dia_(últ._12_meses)_em_%", "Máx_Retorno_Mensal_(últ._12_meses)_em_%",</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> "Máx_Prêmio_Mensal_vs_IBOV_(últ._12_meses)_em_dif._de_p.p.", "Mín_Retorno_Mensal_(últ._12_meses)_em_%", "Mín_Prêmio_Mensal_vs_IBOV_(últ._12_meses)_em_dif._de_p.p.", "Meses_Positivos_(últ._12_meses)_em_unidades", "Meses_Negativos_(últ._12_meses)_em_unidades", "Meses_acima_do_IBOV_(últ._12_meses)_em_unidades", "Meses_abaixo_do_IBOV_(últ._12_meses)_em_unidades", "Perda_Máxima__(últ._12_meses)_em_%", "Data_do_Pico_Perda_Máxima", "Data_do_Fundo_Perda_Máxima", "Tempo_de_Recuperação_Perda_Máxima_em_dias_úteis", "Data_de_Recuperação_Perda_Máxima", "Data_da_Última_Carteira_Aberta", "Alocação_em_Títulos_Públicos_(1)_em_%", "Alocação_em_Compromissadas_(2)_em_%", "Alocação_em_Debêntures_(3)_em_%", "Alocação_em_Dep._a_Prazo_(4)_em_%", "Alocação_Renda_Fixa_(1+2+3+4)_em_%", "Alocação_em_Ações_(5)_em_%", "Alocação_em_BDR's_(6)_em_%", "Alocação_em_UNIT's_(7)_em_%", "Alocação_em_Emp._Cedidos_(8)_em_%", "Alocação_em_Emp._Recebidos_(9)_em_%", "Alocação_NET_em_R._Variável_(5+6+7+8-9)_em_%", "Alocação_em_Investimentos_no_Exterior_em_%", "Alocação_em_Cotas_de_Fundos_em_%", "1º_Maior_Investimento__em_%", "1º_Maior_Investimento_", "2º_Maior_Investimento__em_%", "2º_Maior_Investimento_", "3º_Maior_Investimento__em_%", "3º_Maior_Investimento_", "Soma_dos_3_Maiores_Investimento_em_%"]</code></pre>
+</div>
+<div class="cell-output cell-output-error">
+<pre><code>ErrorException: syntax: character literal contains multiple characters</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="19">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(dt[<span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, <span class="op">:</span>],</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">"Taxa_de_Administração_Máxima_em_%_a.a."</span>, <span class="st">"Patrimônio___em_milhares"</span>],</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a> <span class="op">:</span>min, <span class="op">:</span>max, <span class="op">:</span>mean, <span class="op">:</span>nunique)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+
+<div class="data-frame"><p>2 rows × 5 columns</p><table class="data-frame table table-sm table-striped"><thead><tr><th></th><th>variable</th><th>min</th><th>max</th><th>mean</th><th>nunique</th></tr><tr><th></th><th title="Symbol">Symbol</th><th title="Float64">Float64</th><th title="Float64">Float64</th><th title="Float64">Float64</th><th title="Int64">Int64</th></tr></thead><tbody><tr><th>1</th><td>Taxa_de_Administração_Máxima_em_%_a.a.</td><td>0.0</td><td>2.0</td><td>1.10222</td><td>6</td></tr><tr><th>2</th><td>Patrimônio___em_milhares</td><td>1.0168e5</td><td>849838.0</td><td>2.44412e5</td><td>9</td></tr></tbody></table></div>
+</div>
 </div>
 </section>
 
